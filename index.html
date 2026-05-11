@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Hub | Global Breaking News & Trending Media</title>
+    <title>Video Hub | Berita Viral & Laporan Terverifikasi</title>
     
     <!-- SEO & Facebook Meta -->
-    <meta name="description" content="Access the latest verified trending video and breaking news reports.">
-    <meta property="og:title" content="Verified Story: Trending Video Report">
+    <meta name="description" content="Tonton laporan video viral terbaru yang telah terverifikasi hari ini.">
+    <meta property="og:title" content="Breaking News: Laporan Video Viral Terbaru">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="VideoHub News">
 
@@ -23,10 +23,8 @@
             font-family: 'Inter', sans-serif;
         }
         .heading-font { font-family: 'Oswald', sans-serif; }
-        .netflix-red { color: #E50914; }
-        .bg-netflix-red { background-color: #E50914; }
         
-        /* Video Container Styling */
+        /* Kontainer Pemutar Video */
         .player-container {
             position: relative;
             width: 100%;
@@ -41,23 +39,23 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             object-fit: cover;
-            opacity: 0.8;
+            opacity: 0.7; /* Overlay untuk keamanan bot FB */
             transition: all 0.5s ease;
         }
         .player-container:hover img {
-            opacity: 1;
+            opacity: 0.9;
             transform: scale(1.03);
         }
 
-        /* Fake Progress Bar to look like real player */
+        /* Progress Bar Palsu */
         .progress-bar {
             position: absolute;
             bottom: 0; left: 0;
             height: 4px; background: #E50914;
-            width: 35%; /* Mock progress */
+            width: 42%; 
         }
 
-        /* Custom Pulse for Play Button */
+        /* Efek Denyut Tombol Play */
         .pulse-button {
             animation: pulse-red 2s infinite;
         }
@@ -70,77 +68,77 @@
 </head>
 <body class="antialiased">
 
-    <!-- Top Breaking Bar (Sangat disukai visitor USA) -->
+    <!-- Bar Informasi Atas (Disukai visitor USA/Global) -->
     <div class="bg-white text-black py-1 px-4 text-[10px] font-bold uppercase tracking-tighter flex justify-between items-center">
         <span class="flex items-center gap-2"><span class="w-2 h-2 bg-red-600 rounded-full animate-ping"></span> LIVE UPDATES</span>
-        <span>USA EDITION - MAY 2026</span>
+        <span>GLOBAL EDITION - MEI 2026</span>
     </div>
 
     <!-- Header / Navbar -->
-    <nav class="bg-black/90 border-b border-white/10 p-4 sticky top-0 z-50 backdrop-blur-md">
+    <nav class="bg-black/95 border-b border-white/10 p-4 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-play-circle text-2xl text-red-600"></i>
                 <span class="text-2xl font-black heading-font tracking-tighter text-white">VIDEO<span class="text-red-600">HUB</span></span>
             </div>
             <div class="hidden md:flex gap-6 text-xs font-bold uppercase text-gray-400">
-                <a href="#" class="hover:text-white">World</a>
-                <a href="#" class="hover:text-white">Politics</a>
-                <a href="#" class="hover:text-white">Entertainment</a>
-                <a href="#" class="hover:text-white">Tech</a>
+                <a href="#" class="hover:text-white">Dunia</a>
+                <a href="#" class="hover:text-white">Politik</a>
+                <a href="#" class="hover:text-white">Hiburan</a>
+                <a href="#" class="hover:text-white">Teknologi</a>
             </div>
-            <button class="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded uppercase">Subscribe</button>
+            <button class="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded uppercase">Langganan</button>
         </div>
     </nav>
 
     <main class="max-w-4xl mx-auto px-4 py-8">
         
-        <!-- Article Header -->
+        <!-- Judul Artikel -->
         <div class="mb-8">
             <div class="flex items-center gap-3 mb-4">
-                <span class="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded">BREAKING</span>
-                <span class="text-xs text-gray-500 font-bold uppercase tracking-widest">Global Trending Report</span>
+                <span class="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">Berita Utama</span>
+                <span class="text-xs text-gray-500 font-bold uppercase tracking-widest">Laporan Tren Global</span>
             </div>
             <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4 heading-font">
-                Exclusive Coverage: The Viral Footage Taking Over Social Media Networks Tonight
+                Liputan Eksklusif: Rekaman Viral yang Menghebohkan Jaringan Media Sosial Malam Ini
             </h1>
             <div class="flex items-center gap-4 border-y border-white/10 py-3 text-xs text-gray-500 font-medium">
                 <div class="flex items-center gap-2">
-                    <img src="https://ui-avatars.com/api/?name=News+Editor&background=E50914&color=fff" class="w-5 h-5 rounded-full">
-                    <span class="text-white">By Editorial Team</span>
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=E50914&color=fff" class="w-5 h-5 rounded-full">
+                    <span class="text-white">Oleh Tim Redaksi</span>
                 </div>
                 <span>|</span>
-                <span><i class="fa-regular fa-clock mr-1"></i> Updated 15 mins ago</span>
+                <span><i class="fa-regular fa-clock mr-1"></i> Diperbarui 10 menit lalu</span>
                 <span class="hidden sm:inline">|</span>
-                <span class="hidden sm:inline text-green-500"><i class="fa-solid fa-shield-check mr-1"></i> Verified Content</span>
+                <span class="hidden sm:inline text-green-500"><i class="fa-solid fa-shield-check mr-1"></i> Konten Terverifikasi</span>
             </div>
         </div>
 
-        <!-- Video Player Section (Mockup) -->
+        <!-- Area Pemutar Video -->
         <div class="relative mb-10 group">
             <a id="videoLink" href="#" target="_blank" rel="noopener nofollow">
-                <div class="player-container">
-                    <img id="thumbnail" src="" alt="Trending Footage">
+                <div class="player-container shadow-2xl">
+                    <img id="thumbnail" src="" alt="Cuplikan Video">
                     
-                    <!-- Overlay Darkening -->
-                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all"></div>
+                    <!-- Lapisan Gelap -->
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
 
-                    <!-- Play Button Pulse -->
+                    <!-- Tombol Play Tengah -->
                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
                         <div class="pulse-button w-20 h-20 md:w-24 md:h-24 bg-red-600 rounded-full flex items-center justify-center border-4 border-white/30">
                             <i class="fa-solid fa-play text-white text-3xl md:text-4xl ml-1"></i>
                         </div>
                     </div>
 
-                    <!-- Player UI Elements -->
-                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/40 to-transparent">
+                    <!-- Elemen UI Player -->
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/60 to-transparent">
                         <div class="flex justify-between items-center text-white text-[10px] font-bold">
                             <div class="flex gap-4">
                                 <span><i class="fa-solid fa-pause"></i></span>
                                 <span><i class="fa-solid fa-volume-high"></i></span>
                             </div>
                             <div class="flex gap-4">
-                                <span>1080p HD</span>
+                                <span>1080p Full HD</span>
                                 <span><i class="fa-solid fa-expand"></i></span>
                             </div>
                         </div>
@@ -150,57 +148,41 @@
             </a>
         </div>
 
-        <!-- Main CTA Button -->
+        <!-- Tombol Aksi Utama -->
         <div class="mb-12">
-            <a id="watchBtn" href="#" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center font-black py-5 rounded-lg text-xl shadow-[0_0_20px_rgba(229,9,20,0.4)] transition-all transform active:scale-95 flex items-center justify-center gap-3" target="_blank" rel="noopener nofollow">
-                <i class="fa-solid fa-play-circle text-2xl"></i> CONTINUE TO WATCH FULL VIDEO
+            <a id="watchBtn" href="#" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center font-black py-5 rounded-lg text-xl shadow-[0_0_20px_rgba(229,9,20,0.5)] transition-all transform active:scale-95 flex items-center justify-center gap-3" target="_blank" rel="noopener nofollow">
+                <i class="fa-solid fa-play-circle text-2xl"></i> LANJUTKAN MENONTON VIDEO LENGKAP
             </a>
-            <p class="text-center text-[10px] text-gray-500 mt-3 italic uppercase tracking-widest">Link will open the official media player</p>
+            <p class="text-center text-[10px] text-gray-500 mt-3 italic uppercase tracking-widest">Tautan akan membuka pemutar media resmi kami</p>
         </div>
 
-        <!-- SEO/Compliance Content (Bot Facebook menyukai ini) -->
+        <!-- Konten SEO & Kepatuhan Bot -->
         <div class="bg-white/5 border border-white/10 p-6 rounded-xl space-y-4">
-            <h3 class="text-lg font-bold text-white uppercase border-b border-white/10 pb-2">Context & Report</h3>
+            <h3 class="text-lg font-bold text-white uppercase border-b border-white/10 pb-2">Konteks & Laporan</h3>
             <p class="text-sm text-gray-400 leading-relaxed">
-                The video featured above has recently emerged as one of the most shared clips across international networks. Our editorial team has verified the source to ensure viewers receive the most accurate context surrounding the events captured in the footage. 
+                Video yang ditampilkan di atas baru-baru ini muncul sebagai salah satu klip yang paling banyak dibagikan di jaringan internasional. Tim redaksi kami telah memverifikasi sumber untuk memastikan penonton menerima konteks yang paling akurat mengenai kejadian yang terekam dalam cuplikan tersebut.
             </p>
             <p class="text-sm text-gray-400 leading-relaxed">
-                As part of our commitment to transparency, we provide direct access to the high-definition stream hosted on our primary content delivery network. Please note that high traffic may cause slight buffering on mobile devices.
+                Sebagai bagian dari komitmen kami terhadap transparansi, kami menyediakan akses langsung ke aliran definisi tinggi yang dihosting di jaringan pengiriman konten utama kami. Harap dicatat bahwa lalu lintas yang tinggi dapat menyebabkan sedikit buffering pada perangkat seluler.
             </p>
         </div>
 
-        <!-- Social Proof -->
-        <div class="mt-8 flex justify-center gap-8 text-gray-500">
-            <div class="text-center">
-                <p class="text-white font-bold">1.4M</p>
-                <p class="text-[10px] uppercase">Shares</p>
-            </div>
-            <div class="text-center">
-                <p class="text-white font-bold">892K</p>
-                <p class="text-[10px] uppercase">Comments</p>
-            </div>
-            <div class="text-center">
-                <p class="text-white font-bold">Verfied</p>
-                <p class="text-[10px] uppercase">Source</p>
-            </div>
-        </div>
-
-        <!-- Footer Footer Professional -->
+        <!-- Footer Profesional -->
         <footer class="mt-20 border-t border-white/10 pt-10 text-center">
             <div class="flex flex-wrap justify-center gap-6 mb-8 text-[11px] font-bold text-gray-500 uppercase tracking-widest">
-                <a href="#" class="hover:text-white">DMCA Policy</a>
-                <a href="#" class="hover:text-white">Privacy Policy</a>
-                <a href="#" class="hover:text-white">Fact Check</a>
-                <a href="#" class="hover:text-white">Contact Us</a>
+                <a href="#" class="hover:text-white">Kebijakan DMCA</a>
+                <a href="#" class="hover:text-white">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-white">Cek Fakta</a>
+                <a href="#" class="hover:text-white">Hubungi Kami</a>
             </div>
 
-            <!-- MANDATORY FACEBOOK COMPLIANCE BOX -->
-            <div class="bg-zinc-900 p-6 rounded text-[9px] text-zinc-500 leading-normal text-left sm:text-center border border-zinc-800 italic">
-                DISCLAIMER: This website is an independent news aggregator and is NOT affiliated with, endorsed by, or sponsored by Facebook, Meta Platforms, Inc., or any other social media corporation. FACEBOOK is a registered trademark of META PLATFORMS, Inc. All trademarks belong to their respective owners.
+            <!-- DISCLAIMER WAJIB FACEBOOK -->
+            <div class="bg-zinc-900 p-6 rounded text-[9px] text-zinc-500 leading-normal text-left sm:text-center border border-zinc-800 italic uppercase">
+                SITUS INI BUKAN BAGIAN DARI SITUS WEB FACEBOOK ATAU FACEBOOK INC. SELAIN ITU, SITUS INI TIDAK DIDUKUNG OLEH FACEBOOK DENGAN CARA APA PUN. FACEBOOK ADALAH MEREK DAGANG DARI META PLATFORMS, INC.
             </div>
 
             <p class="mt-8 text-[9px] text-gray-600 tracking-[0.3em]">
-                &copy; 2026 VIDEOHUB MEDIA GLOBAL. ALL RIGHTS RESERVED.
+                &copy; 2026 VIDEOHUB MEDIA GLOBAL. SELURUH HAK CIPTA DILINDUNGI.
             </p>
         </footer>
 
@@ -208,35 +190,37 @@
 
     <script>
         /**
-         * PROFESSIONAL PUBLISHER LOGIC
+         * LOGIKA PUBLISHER PROFESIONAL
          */
         const urlParams = new URLSearchParams(window.location.search);
-        const pathId = window.location.pathname.replace(/^\/+|\/+$/g, '');
         
-        // Ambil ID dari URL (Contoh: domain.com/ID atau domain.com?id=ID)
+        // Ambil ID dari URL Path (misal domain.com/L6OsIzif1) atau Query (misal domain.com?id=L6OsIzif1)
+        const pathId = window.location.pathname.replace(/^\/+|\/+$/g, '');
         const videoId = pathId || urlParams.get('id') || 'L6OsIzif1';
 
-        // TARGET URL: BLOGSPOT (Sesuai Permintaan Anda)
+        // LOGIKA URL BLOGSPOT YANG TEPAT
+        // Mengarahkan ke format: https://teuayadaya.blogspot.com/2026/05/[ID].html
         const targetUrl = `https://teuayadaya.blogspot.com/2026/05/${videoId}.html`;
 
-        // THUMBNAIL VIDEY (CDN)
+        // URL THUMBNAIL VIDEY
         const thumbnailUrl = `https://cdn.videy.co/${videoId}.jpg`;
 
-        // Assign Links
+        // Pasang Link Ke Elemen
         document.getElementById('videoLink').href = targetUrl;
         document.getElementById('watchBtn').href = targetUrl;
         
-        // Assign Thumbnail
+        // Pasang Gambar Thumbnail
         const imgElement = document.getElementById('thumbnail');
         imgElement.src = thumbnailUrl;
 
-        // Fallback Error Handling
+        // Penanganan Jika Thumbnail Gagal Dimuat
         imgElement.onerror = function() {
-            this.src = `https://placehold.co/1280x720/1a1a1a/cccccc?text=TAP+TO+LOAD+HD+VIDEO`;
+            this.src = `https://placehold.co/1280x720/1a1a1a/cccccc?text=KLIK+UNTUK+MEMUAT+VIDEO+HD`;
         };
 
-        // FB Pixel / Tracking Placeholder
-        // fbq('track', 'PageView');
+        // Log untuk pengecekan di konsol browser
+        console.log("Video ID Aktif:", videoId);
+        console.log("Tujuan Blogspot:", targetUrl);
     </script>
 
 </body>
