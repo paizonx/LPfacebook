@@ -1,280 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Hub | Premium Trending Media</title>
+    
+    <!-- SEO & Facebook Meta -->
+    <meta name="description" content="Access the exclusive high-definition trending report for US audiences.">
+    <meta property="og:title" content="Verified Media: Breaking Viral Update">
+    <meta property="og:type" content="video.other">
+    <meta property="og:site_name" content="VideoHub USA">
 
-<title>Exclusive Viral Video Report</title>
+    <!-- Tailwind & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Oswald:wght@700&display=swap" rel="stylesheet">
 
-<meta name="description" content="Watch the latest trending exclusive report now.">
+    <style>
+        body { 
+            background-color: #050505; 
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .heading-font { font-family: 'Oswald', sans-serif; }
+        
+        /* Video Container dengan efek Premium */
+        .video-stage {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #222;
+            box-shadow: 0 0 50px rgba(229, 9, 20, 0.15);
+        }
 
-<!-- FACEBOOK OPEN GRAPH -->
-<meta property="og:title" content="Breaking Viral Video Report">
-<meta property="og:description" content="Exclusive footage now available.">
-<meta property="og:type" content="article">
-<meta property="og:image" id="ogImage" content="">
-<meta property="og:url" id="ogUrl" content="">
+        #videoPreview {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6); /* Sedikit gelap agar tombol play menonjol */
+        }
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
+        /* Overlay simulasi Player */
+        .player-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.4) 100%);
+        }
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        /* Tombol Play Besar bergaya Netflix */
+        .center-action {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 30;
+            text-align: center;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+        .play-btn-main {
+            width: 85px; height: 85px;
+            background: #E50914;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulse-glow 2s infinite;
+        }
 
-<style>
+        .video-stage:hover .play-btn-main {
+            transform: scale(1.1);
+            background: #ff0f1b;
+        }
 
-body{
-    background:#0b0b0b;
-    color:white;
-    font-family:'Inter',sans-serif;
-}
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(229, 9, 20, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
+        }
 
-.player{
-    position:relative;
-    width:100%;
-    padding-bottom:56.25%;
-    overflow:hidden;
-    border-radius:14px;
-    background:#111;
-    border:1px solid #222;
-}
-
-.player img{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:0.4s;
-}
-
-.player:hover img{
-    transform:scale(1.03);
-}
-
-.overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,.2));
-}
-
-.playBtn{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90px;
-    height:90px;
-    background:#e50914;
-    border-radius:999px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:35px;
-    color:white;
-    box-shadow:0 0 35px rgba(229,9,20,.6);
-    animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-    0%{
-        transform:translate(-50%,-50%) scale(.95);
-    }
-    70%{
-        transform:translate(-50%,-50%) scale(1);
-    }
-    100%{
-        transform:translate(-50%,-50%) scale(.95);
-    }
-}
-
-.watchBtn{
-    background:#e50914;
-    transition:.3s;
-}
-
-.watchBtn:hover{
-    background:#c40812;
-}
-
-</style>
+        /* Progress Bar Animasi */
+        .loading-bar {
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 4px; background: #E50914;
+            width: 0%;
+            animation: mock-load 15s linear infinite;
+        }
+        @keyframes mock-load {
+            0% { width: 0%; }
+            10% { width: 5%; }
+            100% { width: 95%; }
+        }
+    </style>
 </head>
+<body class="antialiased">
 
-<body>
-
-<div class="max-w-4xl mx-auto px-4 py-8">
-
-    <div class="mb-8">
-        <span class="bg-red-600 text-xs px-3 py-1 rounded font-bold uppercase">
-            Breaking Report
-        </span>
-
-        <h1 class="text-4xl md:text-6xl font-black leading-tight mt-4">
-            EXCLUSIVE VIRAL VIDEO FOOTAGE
-        </h1>
-
-        <p class="text-gray-400 mt-4">
-            Verified media report now trending online.
-        </p>
+    <!-- Top Breaking News Bar -->
+    <div class="bg-red-600 text-white py-1.5 px-4 text-[10px] font-black uppercase tracking-[0.2em] flex justify-between items-center z-[60] sticky top-0">
+        <span class="flex items-center gap-2"><i class="fa-solid fa-tower-broadcast animate-pulse"></i> LIVE REPORT: USA TOP STORY</span>
+        <span id="currentDate">MAY 2026</span>
     </div>
 
-    <!-- PLAYER -->
-    <a id="videoLink" href="#" target="_blank" rel="nofollow noopener">
-
-        <div class="player">
-
-            <img id="thumbnail" src="" alt="thumbnail">
-
-            <div class="overlay"></div>
-
-            <div class="playBtn">
-                <i class="fa-solid fa-play"></i>
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        
+        <!-- Header Section -->
+        <header class="mb-8">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="text-xs font-black bg-white text-black px-2 py-0.5 rounded-sm uppercase">Exclusive</span>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Global Media Network</span>
             </div>
+            <h1 class="text-3xl md:text-6xl font-black mb-4 heading-font uppercase leading-[0.95] tracking-tighter">
+                Breaking: <span class="text-red-600">Viral Footage</span> Captures National Attention In Real-Time
+            </h1>
+            <div class="flex items-center gap-4 text-[11px] font-bold text-gray-500 uppercase border-y border-white/5 py-4">
+                <span class="text-green-500 flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Verified Source</span>
+                <span>|</span>
+                <span><i class="fa-solid fa-eye mr-1"></i> 2.4M Watching</span>
+                <span class="hidden sm:inline">|</span>
+                <span class="hidden sm:inline">Quality: 4K UHD</span>
+            </div>
+        </header>
 
-        </div>
+        <!-- Player Stage (The Click Magnet) -->
+        <a id="mainLink" href="#" target="_blank" rel="noopener nofollow" class="block group">
+            <div class="video-stage">
+                <!-- Living Thumbnail (Videy Video Muted) -->
+                <video id="videoPreview" autoplay muted loop playsinline poster="https://placehold.co/1280x720/000/fff?text=Loading+Media...">
+                    <source id="videoSrc" src="" type="video/mp4">
+                </video>
 
-    </a>
+                <div class="player-overlay"></div>
 
-    <!-- BUTTON -->
-    <div class="mt-8">
+                <!-- Central UI -->
+                <div class="center-action">
+                    <div class="play-btn-main">
+                        <i class="fa-solid fa-play text-white text-3xl ml-1"></i>
+                    </div>
+                    <p class="mt-4 text-white font-black text-xs uppercase tracking-[0.3em] drop-shadow-lg">Click To Watch Full Video</p>
+                </div>
 
-        <a
-            id="watchBtn"
-            href="#"
-            target="_blank"
-            rel="nofollow noopener"
-            class="watchBtn block w-full text-center py-5 rounded-xl text-2xl font-black"
-        >
-            WATCH FULL VIDEO
+                <!-- Control Bar Mockup -->
+                <div class="absolute bottom-4 left-5 right-5 z-30 flex justify-between items-center opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="flex gap-4 text-white text-sm">
+                        <i class="fa-solid fa-volume-xmark"></i>
+                        <span class="text-[10px] font-bold">0:12 / 04:22</span>
+                    </div>
+                    <div class="flex gap-4 text-white text-sm">
+                        <i class="fa-solid fa-gear"></i>
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                </div>
+                <div class="loading-bar"></div>
+            </div>
         </a>
 
-    </div>
+        <!-- Main Call to Action -->
+        <div class="mt-10 mb-12">
+            <a id="watchBtn" href="#" class="block w-full bg-white text-black hover:bg-red-600 hover:text-white text-center font-black py-5 rounded-md text-xl transition-all transform active:scale-95 shadow-xl flex items-center justify-center gap-3 uppercase" target="_blank" rel="noopener nofollow">
+                <i class="fa-solid fa-play"></i> Access Full High-Definition Stream
+            </a>
+            <div class="flex justify-between items-center mt-4 px-2">
+                <p class="text-[9px] text-gray-500 font-bold uppercase tracking-widest italic">Encrypted Video Link Enabled</p>
+                <div class="flex gap-2">
+                    <i class="fa-brands fa-cc-visa text-gray-600 text-lg"></i>
+                    <i class="fa-brands fa-cc-mastercard text-gray-600 text-lg"></i>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <!-- Media Context (FB Bot Compliance) -->
+        <article class="bg-zinc-900/40 border border-white/5 p-8 rounded-2xl mb-20">
+            <h2 class="text-xl font-black mb-4 uppercase heading-font tracking-wide">About This Trending Report</h2>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                This digital asset has been flagged as high-engagement content by national media trackers. Our editorial team provides direct access to the raw footage as part of our commitment to public information transparency.
+            </p>
+            <p class="text-gray-400 text-sm leading-relaxed italic border-l-2 border-red-600 pl-4">
+                "The most significant viral event of the month, now available for verified streaming audiences across the United States."
+            </p>
+        </article>
 
-<script>
+        <!-- Professional Footer -->
+        <footer class="mt-20 border-t border-white/5 pt-12 pb-16 text-center">
+            <div class="flex flex-wrap justify-center gap-10 mb-10 text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">
+                <a href="#" class="hover:text-red-600">Safety Report</a>
+                <a href="#" class="hover:text-red-600">Privacy Policy</a>
+                <a href="#" class="hover:text-red-600">Ad Preferences</a>
+                <a href="#" class="hover:text-red-600">DMCA</a>
+            </div>
 
-/*
-========================================
-GET VIDEO ID
-========================================
-*/
+            <div class="max-w-2xl mx-auto bg-zinc-900/80 p-6 rounded text-[9px] text-zinc-600 leading-normal text-left sm:text-center italic border border-zinc-800">
+                DISCLAIMER: VideoHub USA is an independent media portal. This site is NOT part of the Facebook website or Facebook Inc. This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of META PLATFORMS, Inc.
+            </div>
 
-function getVideoID(){
+            <p class="mt-10 text-[9px] text-zinc-700 tracking-[0.5em] font-bold">
+                &copy; 2026 VIDEOHUB GLOBAL MEDIA USA
+            </p>
+        </footer>
 
-    // URL PARAM
-    const params = new URLSearchParams(window.location.search);
+    </main>
 
-    if(params.get('id')){
-        return params.get('id');
-    }
+    <script>
+        /**
+         * PROFESSIONAL PUBLISHER LOGIC - USA TARGET
+         */
+        const getParams = () => {
+            const pathParts = window.location.pathname.split('/');
+            const lastPart = pathParts.filter(p => p !== "").pop();
+            const urlParams = new URLSearchParams(window.location.search);
+            return lastPart || urlParams.get('id') || 'LIWPZnsS1';
+        };
 
-    // PATHNAME
-    const path = window.location.pathname
-        .split('/')
-        .filter(Boolean);
+        const videoId = getParams();
 
-    // LAST PATH
-    if(path.length > 0){
-        return path[path.length - 1];
-    }
+        // 1. URL TUJUAN UTAMA (Vidley sesuai instruksi)
+        const targetUrl = `https://m.vidley.pw/${videoId}`;
 
-    // DEFAULT
-    return 'LIWPZnsS1';
-}
+        // 2. SUMBER VIDEO (Videy CDN untuk Preview)
+        const videoSource = `https://cdn.videy.co/${videoId}.mp4`;
+        const fallbackThumb = `https://cdn.videy.co/${videoId}.jpg`;
 
-const videoId = getVideoID();
+        // Update Elemen
+        document.getElementById('mainLink').href = targetUrl;
+        document.getElementById('watchBtn').href = targetUrl;
+        
+        const videoEl = document.getElementById('videoPreview');
+        const sourceEl = document.getElementById('videoSrc');
+        
+        // Pasang Sumber Video & Poster
+        sourceEl.src = videoSource;
+        videoEl.poster = fallbackThumb;
+        videoEl.load();
 
-/*
-========================================
-BLOGSPOT TARGET
-========================================
-*/
+        // Fallback jika video gagal load (tampilkan placeholder HD)
+        videoEl.onerror = function() {
+            console.warn("Video preview failed, using static fallback.");
+            videoEl.style.display = 'none';
+            const imgFallback = document.createElement('img');
+            imgFallback.src = fallbackThumb;
+            imgFallback.className = "absolute inset-0 w-full h-full object-cover opacity-70";
+            imgFallback.onerror = () => { imgFallback.src = 'https://placehold.co/1280x720/111/fff?text=TAP+TO+WATCH+HD+VIDEO'; };
+            document.querySelector('.video-stage').prepend(imgFallback);
+        };
 
-const targetUrl =
-`https://teuayadaya.blogspot.com/2026/05/${videoId}.html`;
+        // Update Tanggal Otomatis
+        const d = new Date();
+        document.getElementById('currentDate').innerText = d.toLocaleString('en-US', { month: 'long', year: 'numeric' }).toUpperCase();
 
-/*
-========================================
-THUMBNAIL
-========================================
-*/
-
-/*
-GANTI DENGAN CDN THUMB YANG VALID
-*/
-
-const thumbnailSources = [
-
-    `https://cdn.videy.co/${videoId}.jpg`,
-    `https://cdn.videy.co/${videoId}.webp`,
-
-    // fallback
-    `https://placehold.co/1280x720/111111/ffffff?text=WATCH+VIDEO`
-
-];
-
-const thumbnail = document.getElementById('thumbnail');
-
-let currentThumb = 0;
-
-function loadThumbnail(index){
-
-    if(index >= thumbnailSources.length){
-        return;
-    }
-
-    const img = new Image();
-
-    img.src = thumbnailSources[index];
-
-    img.onload = function(){
-        thumbnail.src = thumbnailSources[index];
-    };
-
-    img.onerror = function(){
-        loadThumbnail(index + 1);
-    };
-}
-
-loadThumbnail(currentThumb);
-
-/*
-========================================
-SET LINKS
-========================================
-*/
-
-document.getElementById('videoLink').href = targetUrl;
-document.getElementById('watchBtn').href = targetUrl;
-
-/*
-========================================
-DYNAMIC OG TAGS
-========================================
-*/
-
-document.getElementById('ogUrl')
-    .setAttribute('content', window.location.href);
-
-document.getElementById('ogImage')
-    .setAttribute(
-        'content',
-        thumbnailSources[0]
-    );
-
-/*
-========================================
-DEBUG
-========================================
-*/
-
-console.log("VIDEO ID:", videoId);
-console.log("TARGET:", targetUrl);
-
-</script>
+        console.log("USA Publisher Active | ID:", videoId);
+        console.log("Redirect Destination:", targetUrl);
+    </script>
 
 </body>
 </html>
