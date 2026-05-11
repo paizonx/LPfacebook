@@ -2,58 +2,199 @@
 <html lang="en">
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Trending Video</title>
+<title>Trending Video Everyone Is Watching</title>
 
-  <meta name="description" content="Watch trending videos online.">
+<meta name="description" content="Watch the latest trending video online now.">
 
-  <meta property="og:title" content="Trending Video">
-  <meta property="og:description" content="Watch trending videos online now.">
-  <meta property="og:type" content="website">
+<meta property="og:title" content="Trending Video Everyone Is Watching">
+<meta property="og:description" content="Watch the latest viral clip online.">
+<meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/style.css">
+
+<style>
+
+body{
+  margin:0;
+  padding:0;
+  background:#f5f5f5;
+  font-family:Arial,sans-serif;
+}
+
+.container{
+  max-width:720px;
+  margin:auto;
+  padding:20px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#666;
+}
+
+.thumbnail-box{
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  background:#000;
+}
+
+.thumbnail-box img{
+  width:100%;
+  display:block;
+}
+
+.play-button{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90px;
+  height:90px;
+  background:rgba(255,255,255,0.9);
+  border-radius:50%;
+}
+
+.play-button:before{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:54%;
+  transform:translate(-50%,-50%);
+  border-style:solid;
+  border-width:16px 0 16px 26px;
+  border-color:transparent transparent transparent #111;
+}
+
+.cta{
+  text-align:center;
+  margin-top:25px;
+}
+
+.watch-btn{
+  display:inline-block;
+  background:#1877f2;
+  color:#fff;
+  padding:15px 35px;
+  border-radius:12px;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.watch-btn:hover{
+  opacity:0.9;
+}
+
+.info{
+  background:#fff;
+  margin-top:25px;
+  padding:22px;
+  border-radius:14px;
+  line-height:1.7;
+}
+
+footer{
+  margin-top:35px;
+  text-align:center;
+}
+
+footer a{
+  margin:0 10px;
+  color:#666;
+  text-decoration:none;
+  font-size:14px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+  font-size:26px;
+}
+
+.watch-btn{
+  width:100%;
+  box-sizing:border-box;
+}
+
+}
+
+</style>
 
 </head>
 <body>
 
 <div class="container">
 
-  <div class="hero">
-    <h1>Trending Video Everyone Is Watching</h1>
-    <p>Watch the latest viral clip online now.</p>
-  </div>
+<div class="hero">
 
-  <div class="video-section">
+<h1>Trending Video Everyone Is Watching</h1>
 
-    <div class="video-wrapper">
+<p>Watch the latest viral clip online now.</p>
 
-      <iframe
-        id="videoFrame"
-        src=""
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
+</div>
 
-    </div>
+<a id="targetLink" href="#">
 
-    <div class="cta-box">
+<div class="thumbnail-box">
 
-      <a
-        id="watchBtn"
-        href="#"
-        class="watch-btn"
-        target="_blank"
-        rel="nofollow noopener">
+<img
+src="https://placehold.co/1280x720/png?text=Trending+Video"
+alt="Trending Video">
 
-        Watch Now
+<div class="play-button"></div>
 
-      </a>
+</div>
 
-    </div>
+</a>
 
-  </div>
+<div class="cta">
+
+<a
+id="watchBtn"
+href="#"
+class="watch-btn"
+target="_blank"
+rel="nofollow noopener">
+
+Watch Full Video
+
+</a>
+
+</div>
+
+<div class="info">
+
+<h2>Why Is Everyone Watching This?</h2>
+
+<p>
+This trending video is currently gaining attention online and being shared across multiple platforms.
+</p>
+
+<p>
+Click below to watch the full video now.
+</p>
+
+</div>
+
+<footer>
+
+<a href="/privacy.html">Privacy Policy</a>
+<a href="/terms.html">Terms & Conditions</a>
+
+</footer>
 
 </div>
 
@@ -65,9 +206,9 @@ const videoId = path || "24aDH1R1";
 
 const targetUrl = `https://m.vidley.pw/i${videoId}`;
 
-document.getElementById("videoFrame").src = targetUrl;
-
 document.getElementById("watchBtn").href = targetUrl;
+
+document.getElementById("targetLink").href = targetUrl;
 
 </script>
 
