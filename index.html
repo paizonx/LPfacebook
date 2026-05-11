@@ -7,7 +7,7 @@
 
 <title>Trending Video Everyone Is Watching</title>
 
-<meta name="description" content="Watch the latest trending video online now.">
+<meta name="description" content="Watch trending videos online now.">
 
 <meta property="og:title" content="Trending Video Everyone Is Watching">
 <meta property="og:description" content="Watch the latest viral clip online now.">
@@ -20,150 +20,141 @@
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-  background:#f5f5f5;
-  font-family:Arial,sans-serif;
-  color:#222;
+background:#f5f5f5;
+font-family:Arial,sans-serif;
+color:#222;
 }
 
 .container{
-  width:100%;
-  max-width:720px;
-  margin:auto;
-  padding:20px;
+max-width:720px;
+margin:auto;
+padding:20px;
 }
 
 .hero{
-  text-align:center;
-  margin-bottom:25px;
+text-align:center;
+margin-bottom:25px;
 }
 
 .hero h1{
-  font-size:32px;
-  margin-bottom:10px;
-  color:#111;
+font-size:32px;
+margin-bottom:10px;
 }
 
 .hero p{
-  color:#666;
-  font-size:16px;
+color:#666;
 }
 
 .thumbnail-box{
-  position:relative;
-  overflow:hidden;
-  border-radius:18px;
-  background:#000;
-  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+position:relative;
+overflow:hidden;
+border-radius:18px;
+background:#000;
+box-shadow:0 2px 12px rgba(0,0,0,0.08);
 }
 
 .thumbnail-box img{
-  width:100%;
-  display:block;
+width:100%;
+display:block;
 }
 
 .play-button{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:95px;
-  height:95px;
-  background:rgba(255,255,255,0.92);
-  border-radius:50%;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90px;
+height:90px;
+background:rgba(255,255,255,0.92);
+border-radius:50%;
 }
 
 .play-button:before{
-  content:'';
-  position:absolute;
-  top:50%;
-  left:54%;
-  transform:translate(-50%,-50%);
-  border-style:solid;
-  border-width:18px 0 18px 28px;
-  border-color:transparent transparent transparent #111;
+content:'';
+position:absolute;
+top:50%;
+left:54%;
+transform:translate(-50%,-50%);
+border-style:solid;
+border-width:18px 0 18px 28px;
+border-color:transparent transparent transparent #111;
 }
 
 .cta{
-  text-align:center;
-  margin-top:25px;
+text-align:center;
+margin-top:25px;
 }
 
 .watch-btn{
-  display:inline-block;
-  background:#1877f2;
-  color:#fff;
-  text-decoration:none;
-  padding:16px 38px;
-  border-radius:12px;
-  font-size:18px;
-  font-weight:bold;
-  transition:0.3s;
+display:inline-block;
+background:#1877f2;
+color:#fff;
+text-decoration:none;
+padding:16px 38px;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
 }
 
 .watch-btn:hover{
-  opacity:0.9;
+opacity:0.9;
 }
 
 .info{
-  background:#fff;
-  margin-top:25px;
-  padding:22px;
-  border-radius:16px;
-  line-height:1.7;
-  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+background:#fff;
+margin-top:25px;
+padding:22px;
+border-radius:16px;
+line-height:1.7;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
 
 .info h2{
-  margin-bottom:15px;
-  font-size:24px;
+margin-bottom:15px;
 }
 
 .info p{
-  margin-bottom:15px;
-  color:#555;
+margin-bottom:15px;
+color:#555;
 }
 
 footer{
-  margin-top:35px;
-  text-align:center;
+margin-top:35px;
+text-align:center;
 }
 
 footer a{
-  margin:0 10px;
-  color:#666;
-  text-decoration:none;
-  font-size:14px;
-}
-
-footer a:hover{
-  text-decoration:underline;
+margin:0 10px;
+color:#666;
+text-decoration:none;
+font-size:14px;
 }
 
 .copyright{
-  margin-top:10px;
-  font-size:13px;
-  color:#999;
+margin-top:10px;
+font-size:13px;
+color:#999;
 }
 
 @media(max-width:768px){
 
 .hero h1{
-  font-size:26px;
+font-size:26px;
 }
 
 .watch-btn{
-  width:100%;
+width:100%;
 }
 
 .play-button{
-  width:75px;
-  height:75px;
+width:75px;
+height:75px;
 }
 
 }
@@ -248,58 +239,58 @@ Click below to watch the full video now.
 <script>
 
 /*
-  Ambil ID dari URL
-  contoh:
-  /24aDH1R1
+Ambil ID video dari URL
+contoh:
+/24aDH1R1
 */
 
 const path = window.location.pathname.replace("/", "");
 
-/*
-  Default ID jika kosong
-*/
-
 const videoId = path || "24aDH1R1";
 
 /*
-  URL tujuan utama
+Link tujuan utama
 */
 
 const targetUrl =
 `https://m.vidley.pw/i${videoId}`;
 
 /*
-  Thumbnail video
-  Ganti jika punya source thumbnail lain
+Thumbnail otomatis berdasarkan ID
+GANTI endpoint jika berbeda
 */
 
 const thumbnailUrl =
-`https://cdn.vidley.pw/thumb/${videoId}.jpg`;
+`https://m.vidley.pw/thumbnail/${videoId}.jpg`;
 
 /*
-  Pasang link tombol
+Pasang thumbnail
 */
 
-document.getElementById("watchBtn").href = targetUrl;
-
-document.getElementById("targetLink").href = targetUrl;
+document.getElementById("thumbnail").src =
+thumbnailUrl;
 
 /*
-  Pasang thumbnail
+Fallback image jika thumbnail gagal
 */
 
-document.getElementById("thumbnail").src = thumbnailUrl;
-
-/*
-  Fallback image jika thumbnail gagal
-*/
-
-document.getElementById("thumbnail").onerror = function(){
+document.getElementById("thumbnail").onerror =
+function(){
 
 this.src =
 'https://placehold.co/1280x720/png?text=Trending+Video';
 
 };
+
+/*
+Pasang link tujuan
+*/
+
+document.getElementById("watchBtn").href =
+targetUrl;
+
+document.getElementById("targetLink").href =
+targetUrl;
 
 </script>
 
