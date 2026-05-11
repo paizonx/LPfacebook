@@ -32,17 +32,19 @@
             border-radius: 4px;
             overflow: hidden;
             border: 1px solid #333;
+            cursor: pointer;
         }
-        .player-container img {
+        
+        #thumbnail {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             object-fit: cover;
-            opacity: 0.7;
-            transition: all 0.5s ease;
+            opacity: 0; /* Mulai dari 0, lalu fade in di JS */
+            transition: opacity 0.8s ease, transform 0.5s ease;
         }
-        .player-container:hover img {
-            opacity: 0.9;
+
+        .player-container:hover #thumbnail {
             transform: scale(1.03);
         }
 
@@ -50,16 +52,32 @@
             position: absolute;
             bottom: 0; left: 0;
             height: 4px; background: #E50914;
-            width: 45%; 
+            width: 38%; 
         }
 
         .pulse-button {
             animation: pulse-red 2s infinite;
+            z-index: 30;
         }
+        
         @keyframes pulse-red {
             0% { transform: translate(-50%, -50%) scale(0.95); box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.7); }
             70% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 15px rgba(229, 9, 20, 0); }
             100% { transform: translate(-50%, -50%) scale(0.95); box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
+        }
+
+        /* Shimmer Loading Effect */
+        .shimmer-box {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #111 25%, #222 50%, #111 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            z-index: 5;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
     </style>
 </head>
@@ -68,7 +86,7 @@
     <!-- Top News Bar -->
     <div class="bg-white text-black py-1 px-4 text-[10px] font-bold uppercase tracking-tighter flex justify-between items-center">
         <span class="flex items-center gap-2"><span class="w-2 h-2 bg-red-600 rounded-full animate-ping"></span> LIVE UPDATES</span>
-        <span>USA NATIONAL EDITION - 2026</span>
+        <span>USA NATIONAL EDITION - MAY 2026</span>
     </div>
 
     <!-- Header -->
@@ -92,7 +110,7 @@
         <!-- Headline -->
         <div class="mb-8 text-left">
             <div class="flex items-center gap-3 mb-4">
-                <span class="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">Breaking News</span>
+                <span class="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">Breaking News</span>
                 <span class="text-xs text-gray-500 font-bold uppercase tracking-widest italic">Verified Media Report</span>
             </div>
             <h1 class="text-3xl md:text-6xl font-extrabold text-white leading-tight mb-4 heading-font uppercase">
@@ -101,45 +119,47 @@
             <div class="flex items-center gap-4 border-y border-white/10 py-3 text-xs text-gray-500 font-medium">
                 <div class="flex items-center gap-2">
                     <img src="https://ui-avatars.com/api/?name=News+Desk&background=E50914&color=fff" class="w-5 h-5 rounded-full">
-                    <span class="text-white">By News Editorial</span>
+                    <span class="text-white">By News Editorial Desk</span>
                 </div>
                 <span>|</span>
-                <span><i class="fa-regular fa-clock mr-1"></i> Updated 2 mins ago</span>
-                <span class="hidden sm:inline">|</span>
-                <span class="hidden sm:inline text-green-500 font-bold uppercase"><i class="fa-solid fa-shield-check mr-1"></i> Fact-Checked</span>
+                <span><i class="fa-regular fa-clock mr-1"></i> 3 mins ago</span>
+                <span class="hidden sm:inline text-green-500 font-bold uppercase"><i class="fa-solid fa-shield-check ml-1"></i> Verified Content</span>
             </div>
         </div>
 
-        <!-- Video Player (Netflix/USA Media Style) -->
+        <!-- Video Player -->
         <div class="relative mb-10 group">
             <a id="videoLink" href="#" target="_blank" rel="noopener nofollow">
-                <div class="player-container shadow-2xl shadow-red-900/10">
-                    <!-- Thumbnail with Filter -->
-                    <img id="thumbnail" src="" alt="Trending Media Content">
+                <div class="player-container shadow-2xl">
+                    <!-- Shimmer Layer -->
+                    <div id="shimmer" class="shimmer-box"></div>
                     
-                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all"></div>
+                    <!-- Thumbnail -->
+                    <img id="thumbnail" src="" alt="Video Content">
+                    
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all z-10"></div>
 
-                    <!-- Center Play Icon -->
+                    <!-- Center Play Button -->
                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
                         <div class="pulse-button w-20 h-20 md:w-28 md:h-28 bg-red-600 rounded-full flex items-center justify-center border-4 border-white/30">
                             <i class="fa-solid fa-play text-white text-3xl md:text-5xl ml-1"></i>
                         </div>
                     </div>
 
-                    <!-- Player UI -->
-                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/80 to-transparent">
+                    <!-- Player UI Elements -->
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/80 to-transparent z-20">
                         <div class="flex justify-between items-center text-white text-[10px] font-bold">
                             <div class="flex gap-4">
                                 <span><i class="fa-solid fa-pause"></i></span>
                                 <span><i class="fa-solid fa-volume-high"></i></span>
                             </div>
-                            <div class="flex gap-4">
-                                <span>1080p HD</span>
-                                <span><i class="fa-solid fa-expand"></i></span>
+                            <div class="flex gap-4 uppercase">
+                                <span>1080p HD LIVE</span>
+                                <span><i class="fa-solid fa-expand ml-2"></i></span>
                             </div>
                         </div>
                     </div>
-                    <div class="progress-bar"></div>
+                    <div class="progress-bar z-20"></div>
                 </div>
             </a>
         </div>
@@ -147,80 +167,77 @@
         <!-- Main Button -->
         <div class="mb-12">
             <a id="watchBtn" href="#" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center font-black py-6 rounded-lg text-2xl shadow-[0_0_40px_rgba(229,9,20,0.4)] transition-all transform active:scale-95 flex items-center justify-center gap-4" target="_blank" rel="noopener nofollow">
-                <i class="fa-solid fa-play-circle text-3xl"></i> CONTINUE TO FULL VIDEO
+                <i class="fa-solid fa-play-circle text-3xl"></i> WATCH FULL EXCLUSIVE VIDEO
             </a>
-            <p class="text-center text-[11px] text-gray-500 mt-4 italic uppercase tracking-widest font-bold">Safe Redirect to Teuayadaya Blogspot</p>
+            <p class="text-center text-[11px] text-gray-500 mt-4 italic uppercase tracking-widest font-bold">Secure Redirect to Official Teuayadaya Report</p>
         </div>
 
-        <!-- Content for Bot Compliance -->
+        <!-- Compliance Text -->
         <div class="bg-white/5 border border-white/10 p-6 rounded-xl space-y-4 mb-20">
-            <h3 class="text-lg font-bold text-white uppercase border-b border-white/10 pb-2 flex items-center gap-2">
-                <i class="fa-solid fa-file-lines text-red-600"></i> Report Context
-            </h3>
             <p class="text-sm text-gray-400 leading-relaxed">
-                Our editorial team has verified this trending footage currently circulating across major US networks. We provide this secure portal to ensure our readers have access to unedited, high-definition content from the original event.
+                This exclusive footage is part of our verified trending series. To maintain high-quality streaming performance, we redirect users to our primary hosting server at Teuayadaya Blogspot.
             </p>
         </div>
 
         <!-- Professional Footer -->
         <footer class="mt-20 border-t border-white/10 pt-12 pb-12 text-center text-gray-500">
-            <div class="flex flex-wrap justify-center gap-8 mb-10 text-[11px] font-bold uppercase tracking-widest">
-                <a href="#" class="hover:text-white">DMCA</a>
-                <a href="#" class="hover:text-white">Privacy</a>
-                <a href="#" class="hover:text-white">Fact Check</a>
-                <a href="#" class="hover:text-white">Terms</a>
-            </div>
-
             <div class="bg-zinc-900 p-8 rounded-lg text-[9px] leading-normal text-left sm:text-center border border-zinc-800 italic uppercase max-w-2xl mx-auto mb-10">
-                DISCLAIMER: This website is an independent digital media aggregator. It is NOT affiliated with, endorsed by, or sponsored by Facebook, Meta Platforms, Inc. FACEBOOK is a registered trademark of META PLATFORMS, Inc.
+                DISCLAIMER: This website is an independent news aggregator. It is NOT affiliated with, endorsed by, or sponsored by Facebook, Meta Platforms, Inc. FACEBOOK is a registered trademark of META PLATFORMS, Inc.
             </div>
-
-            <p class="text-[9px] tracking-[0.4em] font-bold opacity-30">
-                &copy; 2026 VIDEOHUB USA MEDIA. ALL RIGHTS RESERVED.
-            </p>
+            <p class="text-[9px] tracking-[0.4em] font-bold opacity-30 uppercase">&copy; 2026 VideoHub USA Media</p>
         </footer>
 
     </main>
 
     <script>
         /**
-         * PROFESSIONAL PUBLISHER LOGIC
+         * PROFESSIONAL PUBLISHER SCRIPT
          */
-        const urlParams = new URLSearchParams(window.location.search);
         
-        // 1. Ambil ID dari Path (e.g., domain.com/LIWPZnsS1)
-        const pathId = window.location.pathname.replace(/^\/+|\/+$/g, '');
-        
-        // 2. Gunakan ID dari path, jika kosong cek query '?id=', jika kosong pakai default
-        const videoId = pathId || urlParams.get('id') || 'L6OsIzif1';
-
-        // 3. TARGET BLOGSPOT URL (Sesuai Permintaan Anda)
-        // Format: https://teuayadaya.blogspot.com/2026/05/[ID].html
-        const targetUrl = `https://teuayadaya.blogspot.com/2026/05/${videoId}.html`;
-
-        // 4. THUMBNAIL LOGIC
-        // Videy Thumbnail CDN pattern: https://cdn.videy.co/[ID].jpg
-        const thumbnailUrl = `https://cdn.videy.co/${videoId}.jpg`;
-
-        // Update link tombol dan player
-        document.getElementById('videoLink').href = targetUrl;
-        document.getElementById('watchBtn').href = targetUrl;
-        
-        // Update Gambar
-        const imgElement = document.getElementById('thumbnail');
-        imgElement.src = thumbnailUrl;
-
-        // Fallback: Jika Videy belum generate thumbnail, tampilkan placeholder profesional
-        imgElement.onerror = function() {
-            console.warn("Videy thumbnail not found, using professional fallback.");
-            // Menggunakan placeholder yang terlihat seperti frame video gelap agar tetap 'Netflix'
-            this.src = `https://placehold.co/1280x720/111/fff?text=CLICK+TO+WATCH+IN+HD`;
-            this.style.opacity = "0.9";
+        // 1. Ambil ID dari URL (Sangat Teliti)
+        const getID = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pathParts = window.location.pathname.split('/');
+            // Ambil bagian terakhir yang bukan kosong
+            const lastPart = pathParts.filter(p => p !== "").pop();
+            return lastPart || urlParams.get('id') || 'LIWPZnsS1';
         };
 
-        console.log("Publisher Mode: USA Target");
-        console.log("Current ID:", videoId);
-        console.log("Redirect Path:", targetUrl);
+        const videoId = getID();
+
+        // 2. TARGET BLOGSPOT (Pasti ke link Anda)
+        const targetUrl = `https://teuayadaya.blogspot.com/2026/05/${videoId}.html`;
+
+        // 3. THUMBNAIL LOGIC (Multiple Source Check)
+        const thumbImg = document.getElementById('thumbnail');
+        const shimmer = document.getElementById('shimmer');
+
+        // Path Utama Videy
+        const videyThumb = `https://cdn.videy.co/${videoId}.jpg`;
+        
+        // Set Link
+        document.getElementById('videoLink').href = targetUrl;
+        document.getElementById('watchBtn').href = targetUrl;
+
+        // Eksekusi Pemuatan Gambar
+        thumbImg.src = videyThumb;
+
+        thumbImg.onload = function() {
+            shimmer.style.display = 'none';
+            thumbImg.style.opacity = '1';
+        };
+
+        thumbImg.onerror = function() {
+            console.warn("Videy Thumbnail 404. Switching to Professional Dynamic Placeholder.");
+            // Jika Videy gagal, pakai placeholder berkualitas tinggi agar CTR tetap terjaga
+            // Kita gunakan tema "Video Still" gelap
+            this.src = `https://placehold.co/1280x720/111111/ffffff?text=WATCH+EXCLUSIVE+HD+CLIP`;
+            shimmer.style.display = 'none';
+            thumbImg.style.opacity = '0.9';
+        };
+
+        console.log("Publisher Ready | ID:", videoId);
+        console.log("Destination:", targetUrl);
     </script>
 
 </body>
